@@ -172,6 +172,7 @@ services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.17.8
     container_name: elasticsearch
+#    restart: always
     environment:
       - node.name=elasticsearch
       - cluster.name=es-docker-cluster
@@ -201,6 +202,16 @@ services:
       - cdc
     depends_on:
       - elasticsearch
+      
+  community-app:
+    image: openmf/community-app:latest
+    container_name: mifos-ui
+    restart: always
+    ports:
+      - 8880:80
+    networks:
+      - cdc
+  #http://localhost:8880/?baseApiUrl=https://localhost:8443/fineract-provider&tenantIdentifier=default#/viewsavingaccount/1
 
 volumes:
   es-data:
