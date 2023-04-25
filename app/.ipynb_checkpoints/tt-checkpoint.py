@@ -37,7 +37,7 @@ df = spark \
     .readStream \
     .format("kafka") \
     .option("kafka.bootstrap.servers", "kafka:9092") \
-    .option("subscribe", "dbserver2.inventory.addresses") \
+    .option("subscribe", "dbserver2.inventory.customers") \
     .load()
 
 # select the value column from the Kafka stream

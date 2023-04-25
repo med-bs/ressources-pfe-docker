@@ -1,13 +1,14 @@
 #import os
 #os.environ["PYSPARK_SUBMIT_ARGS"] = "--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.2" 
+
+import os
+os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.2 pyspark-shell'
+
 from pyspark.sql import SparkSession
 # create a Spark session
 spark = SparkSession.builder.appName("Kafkaconsumer").getOrCreate()
 
 print('\n\n test \n\n')
-
-import os
-os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.3.2 pyspark-shell'
 
 # create a Kafka stream
 df = spark \
